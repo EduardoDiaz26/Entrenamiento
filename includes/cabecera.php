@@ -1,5 +1,5 @@
 <?php session_start();?>
-<!DOCTYPE html>
+<!DOCTYPE htm
 <html lang="en">
 
 <head>

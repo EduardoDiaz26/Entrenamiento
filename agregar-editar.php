@@ -3,38 +3,31 @@
  
 
 <div class="container">
-  <form class="form-horizontal" action="controller/agregar-editar.php">
+  <form class="form-horizontal" action="controller/agregar-editar.php" method="POST">
   <h2>Agregar/Editar</h2>
+    <input type="hidden" name="id">
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Nombre:</label>
       <div class="col-sm-3">
-        <input type="email" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
+        <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Apellidos:</label>
       <div class="col-sm-3">          
-        <input type="password" class="form-control" id="apellidos" placeholder="Apellidos" name="apellidos">
+        <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" name="apellidos">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Año:</label>
       <div class="col-sm-3">          
-        <input type="password" class="form-control" id="año" placeholder="Año de ingreso" name="año">
+        <input type="text" class="form-control" id="año" placeholder="Año de ingreso" name="año">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Cargo:</label>
       <div class="col-sm-3">          
-        <input type="password" class="form-control" id="cargo" placeholder="Cargo" name="cargo">
-      </div>
-    </div>
-    
-    <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
-        <div class="checkbox">
-          <label><input type="checkbox" name="remember"> Remember me</label>
-        </div>
+        <input type="text" class="form-control" id="cargo" placeholder="Cargo" name="cargo">
       </div>
     </div>
     <div class="form-group">        
