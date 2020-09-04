@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require_once '../includes/conexion.php';
+
 if(isset($_POST)){
     $db = Database::connect();
     $usuario_id = $_SESSION['identidad']['id'];
@@ -39,26 +40,35 @@ if(isset($_POST)){
         $cargo_validado = false;
         $errores['cargo'] = "El nombre no es valido";
     }
+    $error = "Error";
+    
 
     $creado = date('Y-m-d H:i:s');
     $modificado = date('Y-m-d H:i:s');
     if(count($errores) == 0){
         $sql = "insert into empleados values(null, ?, ?, ?, ?, ?, ?, ?)";
         $prep = mysqli_prepare($db, $sql);
-        mysqli_stmt_bind_param($prep, 'issssdd', $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado);
+        $prep->bind_param( 'issssss', $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado);
      
         $result = mysqli_stmt_execute($prep);
 
-        var_dump($result);
-        die();
-
         if($result){
-           
+           $_SESSION['registro'] = 'complete';
+        }else{
+            $_SESSION['registro'] = 'failed';
         }
-    }    
+    }else{
+        $_SESSION['registro'] = 'failed';
+        header("location:../agregar-editar.php&error=". $error);
+    }
 
+    
 
+}else{
+    $_SESSION['registro'] = 'failed';
 }
+
+header("location:../agregar-editar.php");
 
 
 

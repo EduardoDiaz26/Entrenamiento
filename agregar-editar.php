@@ -1,7 +1,18 @@
 
 <?php require_once 'includes/cabecera.php'?>
  
-
+<?php if (isset($_SESSION['registro']) && $_SESSION['registro'] == 'complete'):?>
+  <div class="alert alert-success">
+  <strong>Registrado!</strong> Se ha registrado correctamente.
+</div>
+<?php elseif(isset($_SESSION['registro']) && $_SESSION['registro'] != 'complete'):?>
+  <div class="alert alert-danger">
+  <strong>Danger!</strong> Error al registrar. Campo incorrecto 
+</div>
+<?php endif;?>
+ <?php if(isset($_GET['error'])){
+   var_dump($_GET['error']); die();
+ }?>
 <div class="container">
   <form class="form-horizontal" action="controller/agregar-editar.php" method="POST">
   <h2>Agregar/Editar</h2>
