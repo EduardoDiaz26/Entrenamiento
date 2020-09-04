@@ -18,14 +18,13 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="https://www.b-cube.in/wp-content/uploads/2014/05/aditya-300x177.jpg" id="icon" alt="User Icon" />
       <h1>Control Empleados</h1>
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Usuario">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Contraseña">
+    <form action="controller/login.php" method="POST" >
+      <input type="text" id="usuario" class="fadeIn second" name="usuario" placeholder="Usuario">
+      <input type="text" id="contraseña" class="fadeIn third" name="contraseña" placeholder="Contraseña">
       <input type="submit" class="fadeIn fourth" value="Ingresar">
     </form>
 
