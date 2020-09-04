@@ -1,6 +1,6 @@
 <?php
 require_once '../includes/conexion.php';
-session_start();
+
 
 if(isset($_POST)){
     
@@ -34,13 +34,16 @@ if(isset($_POST)){
             $_SESSION['identidad']['apellidos'] = $apellidos;
             $_SESSION['identidad']['usuario'] = $usuario;
             $_SESSION['identidad']['contraseña'] = $contraseña;
-            $_SESSION['identidad']['admin'] = $admin;        
+            $_SESSION['identidad']['admin'] = $admin;    
+            //var_dump($_SESSION['identidad']);  
+            //die(); 
+            header("Location:../index.php"); 
         }
     }
 
     //$prep->bind_result($id, $nombre, $apellido, $usuario, $contraseña, $admin);
 }
 
-header("Location:../index.php");
+
 
 ?>
