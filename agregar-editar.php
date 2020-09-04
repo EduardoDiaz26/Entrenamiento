@@ -10,40 +10,43 @@
   <strong>Danger!</strong> Error al registrar. Campo incorrecto 
 </div>
 <?php endif;?>
+<?php Utils::deleteSession('registro')?>
+
  <?php if(isset($_GET['error'])){
    var_dump($_GET['error']); die();
  }?>
+
 <div class="container">
-  <form class="form-horizontal" action="controller/agregar-editar.php" method="POST">
+  <form class="form-horizontal" action="Data/agregar-editar.php" method="POST">
   <h2>Agregar/Editar</h2>
-    <input type="hidden" name="id">
+    <input type="hidden" id="Cid" name="id">
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Nombre:</label>
       <div class="col-sm-3">
-        <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre">
+        <input type="text" class="form-control" id="Cnombre" placeholder="Nombre" name="nombre">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Apellidos:</label>
       <div class="col-sm-3">          
-        <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" name="apellidos">
+        <input type="text" class="form-control" id="Capellidos" placeholder="Apellidos" name="apellidos">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Año:</label>
       <div class="col-sm-3">          
-        <input type="text" class="form-control" id="año" placeholder="Año de ingreso" name="año">
+        <input type="text" class="form-control" id="Caño" placeholder="Año de ingreso" name="año">
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Cargo:</label>
       <div class="col-sm-3">          
-        <input type="text" class="form-control" id="cargo" placeholder="Cargo" name="cargo">
+        <input type="text" class="form-control" id="Ccargo" placeholder="Cargo" name="cargo">
       </div>
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="submit" id="Cbutton" class="btn btn-success">Guardar</button>
       </div>
     </div>
   </form>
@@ -63,13 +66,14 @@
   <tbody>
     <?php while($empleado = $empleados->fetch_object()): ?>
     <tr>
-      <td><?=$empleado->nombres?></td>
-      <td><?=$empleado->apellidos?></td>
-      <td><?=$empleado->años?></td>
-      <td><?=$empleado->cargo?></td>
+      <td id="id<?=$empleado->id?>" style="display: none"><?=$empleado->id?></td>
+      <td id="nombre<?=$empleado->id?>"><?=$empleado->nombres?></td>
+      <td id="apellido<?=$empleado->id?>"><?=$empleado->apellidos?></td>
+      <td id="años<?=$empleado->id?>"><?=$empleado->años?></td>
+      <td id="cargo<?=$empleado->id?>"><?=$empleado->cargo?></td>
       <td>
-        <a href="·" class="fa fa-pencil-square-o" style="font-size:24px">  </a>
-        <a href="·" class="fa fa-trash-o" style="font-size:24px"></a>
+        <a href="#" onclick="abrir('<?=$empleado->id?>')" class="fa fa-pencil-square-o" style="font-size:24px">  </a>
+        <a href="Data/eliminar.php?id=<?=$empleado->id?>" class="fa fa-trash-o" style="font-size:24px"></a>
       </td>
     </tr> 
     <?php endwhile;?>
@@ -77,6 +81,6 @@
 </table>
  
 </div>
-<br><br><br>
+<br><br><br><br><br>
 
 <?php require_once 'includes/footer.php'?>

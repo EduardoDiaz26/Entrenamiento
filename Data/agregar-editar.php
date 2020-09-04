@@ -27,11 +27,11 @@ if(isset($_POST)){
         $errores['apellido'] = "El nombre no es valido";
     }
 
-    if(!empty($años) && !preg_match("/[0-9]/", $años)){
+    if(!empty($años) && !preg_match("/[a-zA-Z]/", $años)){
         $año_validado = true;
     }else{
         $año_validado = false;
-        $errores['año'] = "El nombre no es valido";
+        $errores['año'] = "El año no es valido";
     }
 
     if(!empty($cargo) && !preg_match("/[0-9]/", $cargo)){
@@ -46,11 +46,23 @@ if(isset($_POST)){
     $creado = date('Y-m-d H:i:s');
     $modificado = date('Y-m-d H:i:s');
     if(count($errores) == 0){
+        
+      if($id == null){
         $sql = "insert into empleados values(null, ?, ?, ?, ?, ?, ?, ?)";
         $prep = mysqli_prepare($db, $sql);
         $prep->bind_param( 'issssss', $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado);
      
         $result = mysqli_stmt_execute($prep);
+        var_dump($usuario_id);
+        die ();
+      }else{
+            $sql = "update empleados set usuario_id = ?, nombres = ?, apellidos = ?, años = ?, cargo = ?, modificado = ? where id= ?";
+            $prep = mysqli_prepare($db, $sql);
+            $prep->bind_param('isssssi', $usuario_id, $nombres, $apellidos, $años, $cargo, $modificado, $id);
+         
+            $result = mysqli_stmt_execute($prep); 
+            
+        }
 
         if($result){
            $_SESSION['registro'] = 'complete';
@@ -59,7 +71,7 @@ if(isset($_POST)){
         }
     }else{
         $_SESSION['registro'] = 'failed';
-        header("location:../agregar-editar.php&error=". $error);
+        header("location:../agregar-editar.php&error=$error");
     }
 
     

@@ -19,13 +19,13 @@
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+              <img class="d-block img-fluid" src="https://academia.crandi.com/wp-content/uploads/2020/07/programa-de-beneficios-para-empleados.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
+              <img class="d-block img-fluid" src="https://www.bizneo.com/blog/wp-content/uploads/2019/10/como-motivar-a-los-empleados-810x455.jpg" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
+              <img class="d-block img-fluid" src="https://www.popularenlinea.com/Personas/blog/PublishingImages/2020/Marzo/Qu%C3%A9_hago_si_uno_de_mis_empleados_se_enferma_de_coronavirus.jpg" alt="Third slide">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -98,7 +98,7 @@
       ?>    
           <!--Pagination-->
           <?php if($total_pages > 1): ?>
-          <ul class="pagination pagination-sm justify-content-center">
+          <ul class="pagination pagination-sm5 justify-content-center">
             <!-- Link of the first page -->
             <li class='page-item <?php ($page <= 1 ? print 'disabled' : '')?>'>
               <a class='page-link' href='index.php?page=1'><<</a>
