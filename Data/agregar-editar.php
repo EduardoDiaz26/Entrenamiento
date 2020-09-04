@@ -53,8 +53,7 @@ if(isset($_POST)){
         $prep->bind_param( 'issssss', $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado);
      
         $result = mysqli_stmt_execute($prep);
-        var_dump($usuario_id);
-        die ();
+        
       }else{
             $sql = "update empleados set usuario_id = ?, nombres = ?, apellidos = ?, años = ?, cargo = ?, modificado = ? where id= ?";
             $prep = mysqli_prepare($db, $sql);

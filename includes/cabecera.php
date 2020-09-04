@@ -35,7 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Inicio
+            <a class="nav-link" href="./index.php">Inicio
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -46,7 +46,7 @@
             <a class="nav-link" href="#">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="./Data/logout.php">Salir</a>
           </li>
         </ul>
       </div>

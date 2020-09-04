@@ -37,7 +37,12 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-
+        <!-- Search form -->
+        <form class="form-inline d-flex justify-content-center md-form form-sm active-pink active-pink-2 mt-2" action="" method="POST">
+          <a href="#" class="fa fa-search" aria-hidden="true"></a>
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+            aria-label="Search">
+        </form>
         <div class="row">
 
           <?php 
@@ -55,7 +60,7 @@
             $offset = 0;
           }
 
-          $empleados = Database::connect()->query("Select * from empleados limit $offset, $limit"); 
+          $empleados = Database::connect()->query("Select * from empleados  limit $offset, $limit "); 
           ?>
           <?php if(mysqli_num_rows($empleados) > 0):?>
             <?php while($empleado = mysqli_fetch_object($empleados)):?>

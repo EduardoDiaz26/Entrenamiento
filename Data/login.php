@@ -1,6 +1,6 @@
 <?php
 require_once '../includes/conexion.php';
-
+session_start();
 
 if(isset($_POST)){
     
@@ -26,8 +26,12 @@ if(isset($_POST)){
             $contraseña;
             $admin;
         }
+
+        $hash = password_hash($password, PASSWORD_DEFAULT, ['cost'=>10]);
+        $verify = password_verify($password, $contraseña);
+       
         
-        if($contraseña == $password){
+        if($verify){
             
             $_SESSION['identidad']['id'] = $id;
             $_SESSION['identidad']['nombres'] = $nombres;
@@ -38,11 +42,17 @@ if(isset($_POST)){
             //var_dump($_SESSION['identidad']);  
             //die(); 
             header("Location:../index.php"); 
+        }else {
+            header("Location:../login.html"); 
         }
     }
 
     //$prep->bind_result($id, $nombre, $apellido, $usuario, $contraseña, $admin);
 }
+
+//$password = '123456';
+
+//echo password_hash($password, PASSWORD_DEFAULT, ['COST' => 10]);
 
 
 

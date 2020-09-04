@@ -12,6 +12,7 @@ CONSTRAINT pk_id PRIMARY KEY(id)
 )
 
 insert into Usuarios values(null, "Eduardo", "Diaz", "Eduardo26", "123456", TRUE)
+insert into Usuarios values(null, "Luis", "Fernandez", "Luis02", "123456", false)
 
 create TABLE Empleados(
 id INT(255) auto_increment,
