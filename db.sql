@@ -26,7 +26,7 @@ CONSTRAINT pk_id PRIMARY KEY(id),
 CONSTRAINT fk_usuario_id FOREIGN KEY(usuario_id) REFERENCES Usuarios(id)
 )
 
-insert into Empleados values(null, 1, "Jose", "Martinez", "2005", "Gerente", curdate(), curdate())
+insert into Empleados values(null, 1, "Jose", "Martinez", "2005", "Gerente", CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP())
 insert into Empleados values(null, 1, "Fernando", "Martinez", "2010", "Chofer", CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP())
 insert into Empleados values(null, 1, "Carlos", "Jimenez", "2014", "Contable", CURRENT_TIMESTAMP(),  CURRENT_TIMESTAMP())
 insert into Empleados values(null, 1, "Ruben", "Diaz", "2012", "Diseñador Web", CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP())
