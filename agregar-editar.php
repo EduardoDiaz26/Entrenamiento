@@ -1,4 +1,3 @@
-
 <?php //No permite entrar por la url sin logearse?>
 <?php require_once 'helpers/seguridad.php'?>
 <?php $seguridad= new Seguridad();

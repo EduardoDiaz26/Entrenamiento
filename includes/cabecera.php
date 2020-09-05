@@ -21,7 +21,7 @@
 
 <body>
 
-<?php require_once 'conexion.php';?>
+<?php require_once './helpers/conexion.php';?>
 <?php require_once './helpers/utils.php';?>
 
   <!-- Navigation -->
@@ -47,7 +47,7 @@
           </li>
           <?php endif; ?>
           <li class="nav-item">
-            <a class="nav-link" href="./Data/logout.php">Salir</a>
+            <a class="nav-link" href="./helpers/logout.php">Salir</a>
           </li>
         </ul>
       </div>

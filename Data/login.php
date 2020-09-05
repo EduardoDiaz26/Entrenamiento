@@ -1,5 +1,5 @@
 <?php
-require_once '../includes/conexion.php';
+require_once '../helpers/conexion.php';
 session_start();
 
 if(isset($_POST)){

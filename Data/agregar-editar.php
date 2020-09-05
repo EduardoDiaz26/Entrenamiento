@@ -1,6 +1,6 @@
 <?php 
 session_start();
-require_once '../includes/conexion.php';
+require_once '../helpers/conexion.php';
 
 if(isset($_POST)){
     $db = Database::connect();

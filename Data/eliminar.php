@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../includes/conexion.php';
+require_once '../helpers/conexion.php';
     if($_POST){
         $db = Database::connect();
         $usuario_id = $_SESSION['identidad']['id'];
