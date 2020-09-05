@@ -5,14 +5,15 @@ id INT(255) auto_increment,
 nombres VARCHAR(60),
 apellidos VARCHAR(100),
 usuario VARCHAR(50),
-contraseña VARCHAR(50),
+contraseña VARCHAR(150),
 admin boolean,
 CONSTRAINT pk_id PRIMARY KEY(id)
 
 )
 
-insert into Usuarios values(null, "Eduardo", "Diaz", "Eduardo26", "123456", TRUE)
-insert into Usuarios values(null, "Luis", "Fernandez", "Luis02", "123456", false)
+/*Contraseña encriptada 123456*/
+insert into Usuarios values(null, "Eduardo", "Diaz", "Eduardo26", "$2y$10$.0uQLPa.D86ItsbIRW9SGet3uWJLsl9esExuzai5u5cbf23fgwZPq", TRUE)
+insert into Usuarios values(null, "Luis", "Fernandez", "Luis02", "$2y$10$.0uQLPa.D86ItsbIRW9SGet3uWJLsl9esExuzai5u5cbf23fgwZPq", false)
 
 create TABLE Empleados(
 id INT(255) auto_increment,
@@ -50,7 +51,8 @@ años VARCHAR(50),
 cargo VARCHAR(50),
 creado datetime,
 modificado DATETIME,
-accion VARCHAR(60)
+accion VARCHAR(60),
+fecha datetime,
 CONSTRAINT pk_id PRIMARY KEY(id),
 CONSTRAINT fk_usuario_id FOREIGN KEY(usuario_id) REFERENCES Usuarios(id)
 )

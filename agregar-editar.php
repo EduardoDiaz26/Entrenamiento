@@ -1,4 +1,11 @@
-<?php session_start();?>
+
+<?php //No permite entrar por la url sin logearse?>
+<?php require_once 'helpers/seguridad.php'?>
+<?php $seguridad= new Seguridad();
+      if($seguridad->getUsuario() == null){
+        header('Location: login.html');     
+      }
+?>
 <?php require_once 'includes/cabecera.php'?>
 
  
@@ -29,6 +36,12 @@
  }?>
 <div class="content">
 <div class="container">
+
+<form id= "buscador" class="form-inline d-flex justify-content-center md-form form-sm active-black active-black-2 mt-2" action="Data/search.php" method="POST">
+          <button type="submit"  class="fa fa-search" aria-hidden="true"></button>
+          <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+            aria-label="Search" name="search">
+</form>
 
   <form class="form-horizontal" action="Data/agregar-editar.php" method="POST">
   <h2>Agregar/Editar</h2>
@@ -66,7 +79,17 @@
     </div>
   </form>
 
-  <?php $empleados = Database::connect()->query("Select * from empleados");?>
+  <?php 
+  
+  $sql = "Select * from empleados order by id desc";
+   $empleados = Database::connect()->query($sql);
+  
+   if(isset($_GET["search"])){
+    $search =  Database::connect()->real_escape_string($_GET["search"]);
+    $sql = "Select * from empleados where nombres ='$search' order by id desc";
+    $empleados = Database::connect()->query($sql);
+  }
+  ?>
 
   <table class="table ">
   <thead class="thead-dark">

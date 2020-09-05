@@ -21,10 +21,14 @@
 */
 
 .content{
-  margin-bottom: 16%;
+  margin-bottom: 31%;
 }
 
-
+#buscador{
+  margin-top: 100px;
+  margin-left: 30%;
+  
+}
 
 .active-pink-2 input.form-control[type=text]:focus:not([readonly]) {
   border-bottom: 1px solid #f48fb1;

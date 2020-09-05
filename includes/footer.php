@@ -16,7 +16,7 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- JavaScript -->
-  <script src="scripts.js"></script>
+  <script src="js/scripts.js"></script>
 
 </body>
 

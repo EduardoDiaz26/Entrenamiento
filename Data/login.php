@@ -25,6 +25,7 @@ if(isset($_POST)){
             $usuario;
             $contraseña;
             $admin;
+       
         }
 
         $hash = password_hash($password, PASSWORD_DEFAULT, ['cost'=>10]);
