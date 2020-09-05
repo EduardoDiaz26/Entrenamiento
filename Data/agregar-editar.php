@@ -2,6 +2,7 @@
 session_start();
 require_once '../helpers/conexion.php';
 
+//Comprobamos que exista POST
 if(isset($_POST)){
     $db = Database::connect();
     $usuario_id = $_SESSION['identidad']['id'];
@@ -42,11 +43,9 @@ if(isset($_POST)){
         $cargo_validado = false;
         $errores['cargo'] = "El nombre no es valido";
     }
-    $error = "Error";
-    
-
     
     $fecha = date('Y-m-d H:i:s');
+    
     if(count($errores) == 0){
         
       if($id == null){
@@ -57,10 +56,13 @@ if(isset($_POST)){
         $prep->bind_param( 'issssss', $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado);
      
         $result = mysqli_stmt_execute($prep);
-        
+       
+        //Si result es verdadero, se cumple esta condicion y se ejecuta el query para auditoria
+        //Aqui llevamos el control de todo lo que hace el usuario automaticamente cuando el usuario inserta un nuevo registra 
         if($result){
             $creado = date('Y-m-d H:i:s');
             $modificado = date('Y-m-d H:i:s');
+            //Obtenemos el ultimo id ingresado en la tabla empleado para incrustarlo en la tabla auditoria
             $ID = $db->query("select id from empleados  order by id desc limit 1")->fetch_object();     
             $accion = "creo un nuevo registro";
             $sql = "insert into auditoria values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -77,7 +79,8 @@ if(isset($_POST)){
          
             $result = mysqli_stmt_execute($prep); 
             
-          
+            //Si result es verdadero, se cumple esta condicion y se ejecuta el query para auditoria
+            //Aqui llevamos el control de todo lo que hace el usuario automaticamente haga un update a un registro
             if($result){
                 $accion = "actualizo el registro";
                 $sql = "insert into auditoria values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

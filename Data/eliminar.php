@@ -12,11 +12,15 @@ require_once '../helpers/conexion.php';
         $creado = $_POST['Dccreacion'];
         $modificado = $_POST['Dmmodificado'];
     
-     $sql = "delete from empleados where id = ?";
+        //Consultas preparadas para mayor seguridad evitando inyecciones sql
+         $sql = "delete from empleados where id = ?";
         $prep = mysqli_prepare($db, $sql);
         $prep->bind_param( 'i', $id);
      
         $result = mysqli_stmt_execute($prep);
+
+        //Si result es verdadero, se cumple esta condicion y se ejecuta el query para auditoria
+        //Aqui llevamos el control de todo lo que hace el usuario automaticamente cuando el usuario elimina un registro 
         if($result){
             $fecha = date('Y-m-d H:i:s');
             $accion = "elimino el registro";
@@ -25,6 +29,7 @@ require_once '../helpers/conexion.php';
             $prep->bind_param( 'iissssssss', $id, $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado,$accion, $fecha);
         
             $result = mysqli_stmt_execute($prep);
+           
             $_SESSION['delete'] = 'complete';
          
         }else{
