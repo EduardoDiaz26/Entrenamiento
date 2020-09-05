@@ -40,9 +40,9 @@ insert into Empleados values(null, 1, "Nairobi", "Nivar", "2015", "Programadora"
 insert into Empleados values(null, 1, "Randy", "Mendoza", "2015", "Gerente", CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP())
 insert into Empleados values(null, 1, "Jose", "Encarnacion", "2015", "Gerente", CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP())
 
-create TABLE Eliminados(
+create TABLE auditoria(
 id INT(255) auto_increment,
-anteriorID INT(255),
+empleado_id INT(255),
 usuario_id INT(255),
 nombres VARCHAR(60),
 apellidos VARCHAR(100),
@@ -50,6 +50,7 @@ años VARCHAR(50),
 cargo VARCHAR(50),
 creado datetime,
 modificado DATETIME,
+accion VARCHAR(60)
 CONSTRAINT pk_id PRIMARY KEY(id),
 CONSTRAINT fk_usuario_id FOREIGN KEY(usuario_id) REFERENCES Usuarios(id)
 )

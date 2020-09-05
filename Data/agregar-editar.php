@@ -10,6 +10,8 @@ if(isset($_POST)){
     $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
     $años = isset($_POST['año']) ? $_POST['año'] : false;
     $cargo = isset($_POST['cargo']) ? $_POST['cargo'] : false;
+    $creado = $_POST['Cccreacion'];
+    $modificado = $_POST['Cmmodificado'];
 
     $errores = array();
 
@@ -54,6 +56,16 @@ if(isset($_POST)){
      
         $result = mysqli_stmt_execute($prep);
         
+        if($result){
+            $ID = $db->query("select id from empleados  order by id desc limit 1")->fetch_object();     
+            $accion = "creo un nuevo registro";
+            $sql = "insert into auditoria values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $prep = mysqli_prepare($db, $sql);
+        $prep->bind_param( 'iisssssss', $ID, $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado, $accion);
+     
+        $result = mysqli_stmt_execute($prep);
+         }
+        
       }else{
             $sql = "update empleados set usuario_id = ?, nombres = ?, apellidos = ?, años = ?, cargo = ?, modificado = ? where id= ?";
             $prep = mysqli_prepare($db, $sql);
@@ -61,6 +73,14 @@ if(isset($_POST)){
          
             $result = mysqli_stmt_execute($prep); 
             
+            if($result){
+                $accion = "actualizo el registro";
+                $sql = "insert into auditoria values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $prep = mysqli_prepare($db, $sql);
+                $prep->bind_param( 'iisssssss', $id, $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado,$accion);
+            
+                $result = mysqli_stmt_execute($prep);
+             }
         }
 
         if($result){

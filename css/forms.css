@@ -2,7 +2,7 @@
     margin-left: 25%;
     width: 90%;
     margin-top: -40%;
-    margin-bottom: 7%;
+    margin-bottom: auto;
 }
 
 .form-horizontal{
@@ -19,6 +19,15 @@
     margin-left: -15%;
 }
 */
+
+.content{
+  margin-bottom: 16%;
+}
+
+.footer{
+ margin-top: 31%;
+
+}
 
 .active-pink-2 input.form-control[type=text]:focus:not([readonly]) {
   border-bottom: 1px solid #f48fb1;

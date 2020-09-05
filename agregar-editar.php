@@ -1,3 +1,4 @@
+<?php session_start();?>
 <?php require_once 'includes/cabecera.php'?>
 
  
@@ -15,11 +16,14 @@
  <?php if(isset($_GET['error'])){
    var_dump($_GET['error']); die();
  }?>
-
+<div class="content">
 <div class="container">
+
   <form class="form-horizontal" action="Data/agregar-editar.php" method="POST">
   <h2>Agregar/Editar</h2>
     <input type="hidden" id="Cid" name="id">
+    <input type="hidden" id="Cccreacion" name="Cccreacion">
+     <input type="hidden" id="Cmmodificado" name="Cmmodificado">
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Nombre:</label>
       <div class="col-sm-3">
@@ -71,16 +75,49 @@
       <td id="apellido<?=$empleado->id?>"><?=$empleado->apellidos?></td>
       <td id="años<?=$empleado->id?>"><?=$empleado->años?></td>
       <td id="cargo<?=$empleado->id?>"><?=$empleado->cargo?></td>
+      <td id="creacion<?=$empleado->id?>" style="display: none"><?=$empleado->creado?></td>
+      <td id="modificado<?=$empleado->id?>" style="display: none"><?=$empleado->modificado?></td>
       <td>
-        <a href="#" onclick="abrir('<?=$empleado->id?>')" class="fa fa-pencil-square-o" style="font-size:24px">  </a>
-        <a href="Data/eliminar.php?id=<?=$empleado->id?>" class="fa fa-trash-o" style="font-size:24px"></a>
+        <a href="#"  onclick="abrir('<?=$empleado->id?>')" class="fa fa-pencil-square-o" style="font-size:24px">  </a>
+        <a href="#" onclick="deletee('<?=$empleado->id?>')" data-toggle="modal" data-target="#exampleModal" class="fa fa-trash-o" style="font-size:24px"></a>
       </td>
     </tr> 
+
+     <!-- Modal -->
+     <form action="Data/eliminar.php?id=<?=$empleado->id?>" method="POST">
+     <input type="hidden" id="Did" name="Did">
+     <input type="hidden" id="Dnombre" name="Dnombre">
+     <input type="hidden" id="Dapellido" name="Dapellido">
+     <input type="hidden" id="Daño" name="Daño">
+     <input type="hidden" id="Dcargo" name="Dcargo">
+     <input type="hidden" id="Dccreacion" name="Dccreacion">
+     <input type="hidden" id="Dmmodificado" name="Dmmodificado">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Advertencia</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Seguro que quiere borrar este registro
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" >No</button>
+            <button type="submit" class="btn btn-primary" href="">Sí</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
     <?php endwhile;?>
   </tbody>
 </table>
  
 </div>
-<br><br><br><br><br>
+</div>
+
 
 <?php require_once 'includes/footer.php'?>
