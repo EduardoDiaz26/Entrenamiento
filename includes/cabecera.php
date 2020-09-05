@@ -1,4 +1,4 @@
-<?php session_start();?>
+
 <!DOCTYPE htm
 <html lang="en">
 
@@ -43,7 +43,7 @@
             <a class="nav-link" href="./agregar-editar.php">Agregar/Editar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="#">Usuarios</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./Data/logout.php">Salir</a>

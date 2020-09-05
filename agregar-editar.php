@@ -1,5 +1,5 @@
-
 <?php require_once 'includes/cabecera.php'?>
+
  
 <?php if (isset($_SESSION['registro']) && $_SESSION['registro'] == 'complete'):?>
   <div class="alert alert-success">

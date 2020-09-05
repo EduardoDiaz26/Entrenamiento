@@ -1,6 +1,12 @@
 
-<?php require_once 'includes/cabecera.php'?>
 
+<?php require_once 'helpers/seguridad.php'?>
+<?php $seguridad= new Seguridad();
+      if($seguridad->getUsuario() == null){
+        header('Location: login.html');
+       
+      }
+?><?php require_once 'includes/cabecera.php'?>
   <!-- Page Content -->
   <div class="container">
 
