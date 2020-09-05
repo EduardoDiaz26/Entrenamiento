@@ -45,11 +45,13 @@ if(isset($_POST)){
     $error = "Error";
     
 
-    $creado = date('Y-m-d H:i:s');
-    $modificado = date('Y-m-d H:i:s');
+    
+    $fecha = date('Y-m-d H:i:s');
     if(count($errores) == 0){
         
       if($id == null){
+        $creado = date('Y-m-d H:i:s');
+        $modificado = date('Y-m-d H:i:s');
         $sql = "insert into empleados values(null, ?, ?, ?, ?, ?, ?, ?)";
         $prep = mysqli_prepare($db, $sql);
         $prep->bind_param( 'issssss', $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado);
@@ -57,31 +59,34 @@ if(isset($_POST)){
         $result = mysqli_stmt_execute($prep);
         
         if($result){
+            $creado = date('Y-m-d H:i:s');
+            $modificado = date('Y-m-d H:i:s');
             $ID = $db->query("select id from empleados  order by id desc limit 1")->fetch_object();     
             $accion = "creo un nuevo registro";
-            $sql = "insert into auditoria values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $prep = mysqli_prepare($db, $sql);
-        $prep->bind_param( 'iisssssss', $ID, $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado, $accion);
-     
-        $result = mysqli_stmt_execute($prep);
-         }
+            $sql = "insert into auditoria values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $prep = mysqli_prepare($db, $sql);
+            $prep->bind_param( 'iissssssss', $ID, $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado, $accion, $fecha);
         
-      }else{
+            $result = mysqli_stmt_execute($prep);
+        }
+        
+    }else{
             $sql = "update empleados set usuario_id = ?, nombres = ?, apellidos = ?, años = ?, cargo = ?, modificado = ? where id= ?";
             $prep = mysqli_prepare($db, $sql);
             $prep->bind_param('isssssi', $usuario_id, $nombres, $apellidos, $años, $cargo, $modificado, $id);
          
             $result = mysqli_stmt_execute($prep); 
             
+          
             if($result){
                 $accion = "actualizo el registro";
-                $sql = "insert into auditoria values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $sql = "insert into auditoria values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $prep = mysqli_prepare($db, $sql);
-                $prep->bind_param( 'iisssssss', $id, $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado,$accion);
+                $prep->bind_param( 'iissssssss', $id, $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado,$accion, $fecha);
             
                 $result = mysqli_stmt_execute($prep);
              }
-        }
+            }
 
         if($result){
            $_SESSION['registro'] = 'complete';
@@ -90,7 +95,7 @@ if(isset($_POST)){
         }
     }else{
         $_SESSION['registro'] = 'failed';
-        header("location:../agregar-editar.php&error=$error");
+        
     }
 
     

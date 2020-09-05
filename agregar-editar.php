@@ -13,6 +13,17 @@
 <?php endif;?>
 <?php Utils::deleteSession('registro')?>
 
+<?php if (isset($_SESSION['delete']) && $_SESSION['delete'] == 'complete'):?>
+  <div class="alert alert-success">
+  <strong>Registrado!</strong> Se ha eliminado correctamente.
+</div>
+<?php elseif(isset($_SESSION['delete']) && $_SESSION['delete'] != 'complete'):?>
+  <div class="alert alert-danger">
+  <strong>Danger!</strong> Error al borrar.  
+</div>
+<?php endif;?>
+<?php Utils::deleteSession('delete')?>
+
  <?php if(isset($_GET['error'])){
    var_dump($_GET['error']); die();
  }?>

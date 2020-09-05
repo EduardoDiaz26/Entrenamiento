@@ -43,11 +43,6 @@
           </li>
           <?php if($_SESSION['identidad']['admin'] == true): ?>
           <li class="nav-item">
-            <a class="nav-link" href="#">Usuarios</a>
-          </li>
-          <?php endif; ?>
-          <?php if($_SESSION['identidad']['admin'] == true): ?>
-          <li class="nav-item">
             <a class="nav-link" href="./auditoria.php">Auditoria</a>
           </li>
           <?php endif; ?>
