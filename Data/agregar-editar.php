@@ -3,6 +3,7 @@ session_start();
 require_once '../helpers/conexion.php';
 
 //Comprobamos que exista POST
+
 if(isset($_POST)){
     $db = Database::connect();
     $usuario_id = $_SESSION['identidad']['id'];
@@ -72,7 +73,7 @@ if(isset($_POST)){
             $result = mysqli_stmt_execute($prep);
         }
         
-    }else{
+      }else{
             $sql = "update empleados set usuario_id = ?, nombres = ?, apellidos = ?, años = ?, cargo = ?, modificado = ? where id= ?";
             $prep = mysqli_prepare($db, $sql);
             $prep->bind_param('isssssi', $usuario_id, $nombres, $apellidos, $años, $cargo, $modificado, $id);
@@ -82,7 +83,7 @@ if(isset($_POST)){
             //Si result es verdadero, se cumple esta condicion y se ejecuta el query para auditoria
             //Aqui llevamos el control de todo lo que hace el usuario automaticamente haga un update a un registro
             if($result){
-                $accion = "actualizo el registro";
+               $accion = "actualizo el registro";
                 $sql = "insert into auditoria values(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $prep = mysqli_prepare($db, $sql);
                 $prep->bind_param( 'iissssssss', $id, $usuario_id, $nombres, $apellidos, $años, $cargo, $creado, $modificado,$accion, $fecha);
@@ -92,7 +93,7 @@ if(isset($_POST)){
             }
 
         if($result){
-           $_SESSION['registro'] = 'complete';
+            $_SESSION['registro'] = 'complete';
         }else{
             $_SESSION['registro'] = 'failed';
         }

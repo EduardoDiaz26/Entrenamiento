@@ -41,11 +41,13 @@
           <li class="nav-item">
             <a class="nav-link" href="./agregar-editar.php">Agregar/Editar</a>
           </li>
+
           <?php if($_SESSION['identidad']['admin'] == true): ?>
           <li class="nav-item">
             <a class="nav-link" href="./auditoria.php">Auditoria</a>
           </li>
           <?php endif; ?>
+          
           <li class="nav-item">
             <a class="nav-link" href="./helpers/logout.php">Salir</a>
           </li>
